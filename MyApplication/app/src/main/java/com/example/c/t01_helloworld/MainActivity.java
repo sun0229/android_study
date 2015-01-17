@@ -29,8 +29,7 @@ public class MainActivity extends ActionBarActivity {
                     android.support.v4.app.FragmentTransaction tr = fm.beginTransaction();
                     MyFragment myFr = new MyFragment();
                     tr.add(R.id.myFrame, myFr, "myFragment");
-
-
+                    tr.addToBackStack(null);
                     tr.commit();
                 }
                 break;
@@ -63,6 +62,7 @@ public class MainActivity extends ActionBarActivity {
                         MyFragment myFr = new MyFragment();
                         tr.replace(R.id.myFrame, myFr, "myFr");
                     }
+                    tr.addToBackStack(null);
                     tr.commit();
                 }
                 break;
