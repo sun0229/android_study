@@ -4,11 +4,15 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
+    String[] list = {"Hello", "world","Oracle","java","asp","Hello", "world","Oracle","java","asp","Hello", "world","Oracle","java","asp"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,12 +21,17 @@ public class MainActivity extends ActionBarActivity {
 
         ListView listview = (ListView) findViewById(R.id.listView);
 
-        String[] list = {"Hello", "world","Oracle","java","asp","Hello", "world","Oracle","java","asp","Hello", "world","Oracle","java","asp"};
-
         ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list); // activity, 리스트 레이아웃 형태, 데이터
         listview.setAdapter(adapter);
 
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //((TextView)view).getText().toString();
+                Toast.makeText(MainActivity.this, list[position], Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
