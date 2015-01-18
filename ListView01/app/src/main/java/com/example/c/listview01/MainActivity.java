@@ -1,9 +1,11 @@
 package com.example.c.listview01;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +14,15 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ListView listview = (ListView) findViewById(R.id.listView);
+
+        String[] list = {"Hello", "world","Oracle","java","asp","Hello", "world","Oracle","java","asp","Hello", "world","Oracle","java","asp"};
+
+        ArrayAdapter<String> adapter;
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list); // activity, 리스트 레이아웃 형태, 데이터
+        listview.setAdapter(adapter);
+
     }
 
 
