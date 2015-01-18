@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -14,11 +15,15 @@ public class MainActivity extends ActionBarActivity {
     Thread th;
     TextView textView;
     android.os.Handler handler;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setMax(20);
 
         textView = (TextView)findViewById(R.id.textView);
         handler = new Handler() {
@@ -51,7 +56,7 @@ public class MainActivity extends ActionBarActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            textView.setText("runOnUiThread count = "+i);
+                            progressBar.setProgress(i);
                         }
                     });
 
