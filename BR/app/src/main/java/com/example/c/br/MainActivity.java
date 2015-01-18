@@ -1,4 +1,4 @@
-package com.example.c.broadcastreciver;
+package com.example.c.br;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;

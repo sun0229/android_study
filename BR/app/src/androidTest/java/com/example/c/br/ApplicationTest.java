@@ -1,4 +1,4 @@
-package com.example.c.broadcastreciver;
+package com.example.c.br;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
