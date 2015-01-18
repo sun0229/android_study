@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
             public void run() {
                 for(i=0; i<20; i++){
 
-                    handler.post(new Runnable() {
+                    textView.post(new Runnable() {
                         @Override
                         public void run() {
                             textView.setText("runnable count = "+i);
