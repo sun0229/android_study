@@ -40,17 +40,20 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         th = new Thread(new Runnable() {    // 실행단위
+            int i = 0;
+
             @Override
             public void run() {
-                for(int i=0; i<20; i++){
-                    //Log.d("StartThread >>", "count = "+i);
-                    //textView.setText("count = " + i);
+                for(i=0; i<20; i++){
 
-                    Message msg = new Message();
-                    msg.what = MY_THREAD_TEST;
-                    msg.arg1 = i;
-                    handler.sendMessage(msg);
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            textView.setText("runnable count = "+i);
+                        }
+                    });
 
                     try {
                         Thread.sleep(1000);
