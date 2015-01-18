@@ -23,13 +23,13 @@ public class MainActivity extends ActionBarActivity {
             dialog.setTitle("Loading...");
             dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             dialog.setButton(ProgressDialog.BUTTON_NEGATIVE,"취소",new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss(); //자기 자신을 숨기겠다는 뜻.
-                }
-            });
-            dialog.setButton(ProgressDialog.BUTTON_POSITIVE,"확인",new DialogInterface.OnClickListener() {
-                @Override
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss(); //자기 자신을 숨기겠다는 뜻.
+                    }
+                });
+                dialog.setButton(ProgressDialog.BUTTON_POSITIVE,"확인",new DialogInterface.OnClickListener() {
+                    @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                 }
