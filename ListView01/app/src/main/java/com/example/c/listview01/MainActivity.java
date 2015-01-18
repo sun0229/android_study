@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -25,7 +26,7 @@ class MyData {
 public class MainActivity extends ActionBarActivity {
     //String[] list = {"Hello", "world","Oracle","java","asp","Hello", "world","Oracle","java","asp","Hello", "world","Oracle","java","asp"};
 
-
+    MyCustomAdapter adapter;
     ArrayList<MyData> list;
 
     @Override
@@ -47,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
 
         ListView listview = (ListView) findViewById(R.id.listView);
 
-        MyCustomAdapter adapter;
+
 
         adapter = new MyCustomAdapter(this, R.layout.list_row, list);
         listview.setAdapter(adapter);
@@ -56,6 +57,30 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(MainActivity.this, list.get(position).mTitle, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        listview.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                int count = totalItemCount - visibleItemCount;
+
+                if(firstVisibleItem >= count){  // listitem이 화면에 다 보이고 있을 경우
+                    list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"newtitle1","subtitle1"));
+                    list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"newtitle2","subtitle2"));
+                    list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"newtitle3","subtitle3"));
+                    list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"newtitle4","subtitle4"));
+                    list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"newtitle5","subtitle5"));
+                    list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"newtitle6","subtitle6"));
+
+                    adapter.notifyDataSetChanged();
+                }
+
             }
         });
 
