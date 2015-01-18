@@ -1,9 +1,10 @@
 package com.example.c.sqlite;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +13,24 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView textViewResult = (TextView) findViewById(R.id.textViewResult);
+
+        MySQLiteHandler handler = new MySQLiteHandler(this);
+        handler.insert("sunny1",20,"seoul1");
+        handler.insert("sunny2",30,"seoul2");
+        handler.insert("sunny3",40,"seoul3");
+        handler.insert("sunny4",50,"seoul4");
+        handler.insert("sunny5",60,"seoul5");
+        handler.insert("sunny6",70,"seoul6");
+
+        //textViewResult.setText(handler.getAllData());
+
+        handler.updateAge("sunny1",25);
+        //textViewResult.setText(handler.getAllData());
+
+        handler.delete("sunny5");
+        textViewResult.setText(handler.getAllData());
     }
 
 
