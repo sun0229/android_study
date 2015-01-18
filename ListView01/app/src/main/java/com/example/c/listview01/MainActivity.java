@@ -6,21 +6,60 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+class MyData {
+    int mImgIcon;
+    String mTitle, mSubTitle;
+
+    MyData(int imgIcon, String title, String subTitle) {
+        mImgIcon = imgIcon;
+        mTitle = title;
+        mSubTitle = subTitle;
+    }
+}
 
 public class MainActivity extends ActionBarActivity {
-    String[] list = {"Hello", "world","Oracle","java","asp","Hello", "world","Oracle","java","asp","Hello", "world","Oracle","java","asp"};
+    //String[] list = {"Hello", "world","Oracle","java","asp","Hello", "world","Oracle","java","asp","Hello", "world","Oracle","java","asp"};
+
+
+    ArrayList<MyData> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        list = new ArrayList<MyData>();
+        list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"title1","subtitle1"));
+        list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"title2","subtitle2"));
+        list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"title3","subtitle3"));
+        list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"title4","subtitle4"));
+        list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"title5","subtitle5"));
+        list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"title6","subtitle6"));
+        list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"title7","subtitle7"));
+        list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"title8","subtitle8"));
+        list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"title9","subtitle9"));
+        list.add(new MyData(R.drawable.abc_ic_ab_back_mtrl_am_alpha,"title10","subtitle10"));
+
         ListView listview = (ListView) findViewById(R.id.listView);
 
+        MyCustomAdapter adapter;
+
+        adapter = new MyCustomAdapter(this, R.layout.list_row, list);
+        listview.setAdapter(adapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, list.get(position).mTitle, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        /*
         ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list); // activity, 리스트 레이아웃 형태, 데이터
         listview.setAdapter(adapter);
@@ -32,6 +71,7 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(MainActivity.this, list[position], Toast.LENGTH_SHORT).show();
             }
         });
+        */
     }
 
 
