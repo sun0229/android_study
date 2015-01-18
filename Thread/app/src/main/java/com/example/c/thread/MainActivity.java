@@ -1,7 +1,7 @@
 package com.example.c.thread;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,32 +9,38 @@ import android.view.MenuItem;
 
 public class MainActivity extends ActionBarActivity {
 
-    //boolean bRunning;
-
-    class MyThread extends Thread{
-        public void run(){
-            //for(int i=0; i<20 && bRunning; i++){
-            for(int i=0; i<20; i++){
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                Log.d("Thread Test","Count="+i);
-            }
-        }
-    }
+    Thread th;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MyThread th = new MyThread();
-        th.start();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        th = new Thread(new Runnable() {    // 실행단위
+            @Override
+            public void run() {
+                for(int i=0; i<20; i++){
+                    Log.d("StartThread >>", "count = "+i);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        th.start();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
