@@ -32,6 +32,7 @@ public class MainActivity extends ActionBarActivity {
                 super.handleMessage(msg);
                 if(msg.what == MY_THREAD_TEST){
                     textView.setText("count = " + msg.arg1);
+                    progressBar.setProgress(msg.arg1);
                 }
             }
         };
@@ -52,13 +53,12 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void run() {
                 for(i=0; i<20; i++){
+                    //Message msg = new Message();
+                    Message msg = handler.obtainMessage();
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressBar.setProgress(i);
-                        }
-                    });
+                    msg.what = MY_THREAD_TEST;
+                    msg.arg1 = i;
+                    handler.sendMessage(msg);
 
                     try {
                         Thread.sleep(1000);
