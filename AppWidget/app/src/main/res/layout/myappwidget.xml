@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+
+    >
+    <Button
+        android:id="@+id/leftBtn"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="left" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@color/accent_material_light"
+
+        >
+        <TextView
+            android:id="@+id/textViewDate"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/textViewWeek"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
+    <Button
+        android:id="@+id/rightBtn"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="right" />
+</LinearLayout>
