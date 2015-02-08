@@ -11,6 +11,8 @@ import java.io.IOException;
 
 public class MyService extends Service {
     private final IBinder mBinder = new LocalBinder();
+    private MediaPlayer mPlayer = null;
+    MediaPlayerSQLiteHandler mDBHandler;
 
     public class LocalBinder extends Binder {
         MyService getService(){
@@ -27,8 +29,6 @@ public class MyService extends Service {
         return mBinder;
     }
 
-    private MediaPlayer mPlayer = null;
-
     public void play(){
         String path = Environment.getExternalStorageDirectory().toString();
         path += "/Samsung/Music/Over_the_horizon.mp3";
@@ -42,6 +42,20 @@ public class MyService extends Service {
         }
 
         mPlayer.start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (mPlayer.isPlaying()){
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    mDBHandler.update(1, mPlayer.getCurrentPosition());
+                }
+            }
+        }).start();
 
     }
 
